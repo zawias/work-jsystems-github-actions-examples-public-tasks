@@ -52,7 +52,7 @@ jobs:
           echo "droplet_image = \"${{ vars.DROPLET_IMAGE }}\"" >> ./.auto.tfvars
           echo "droplet_size = \"${{ vars.DROPLET_SIZE }}\"" >> ./.auto.tfvars
           echo "name = \"${{ vars.NAME }}\"" >> ./.auto.tfvars
-          echo "vpc_ip_range = \"${{ vars.VPC_IP_RANGE }}\"" >> ./.auto
+          echo "vpc_ip_range = \"${{ vars.VPC_IP_RANGE }}\"" >> ./.auto.tfvars
 
       - name: Terraform Init
         run: terraform init
