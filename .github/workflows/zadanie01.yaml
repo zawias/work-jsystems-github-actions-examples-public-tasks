@@ -37,7 +37,7 @@ jobs:
         if: ${{ github.event.inputs.terraform_lock != false }}
         run: |
           terraform init
-          terraform force-unlock -forec ${{ inputs.id_lock }}
+          terraform force-unlock -force ${{ inputs.id_lock }}
 
       # Jedno rowazanie na dostarczenie zmiennych do terraform
       - name: Configure auto-ftvars
