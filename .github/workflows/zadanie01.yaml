@@ -34,7 +34,7 @@ jobs:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
       - name: Unlock Terraform version
-        if: ${{ github.event.inputs.terraform_lock != false }}
+        if: ${{ github.event.inputs.terraform_lock == true }}
         run: |
           terraform init
           terraform force-unlock -force ${{ inputs.id_lock }}
