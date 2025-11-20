@@ -12,7 +12,11 @@ on:
         description: "Twoj lock ID"
         required: false
         type: string
-
+    secrets:
+      TF_API_TOKEN:
+        required: true
+      DO_TOKEN:
+        required: true
 # defaults:
 #   run:
 #     shell: bash
