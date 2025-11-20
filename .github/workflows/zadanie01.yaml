@@ -2,6 +2,16 @@ name: Zadanie01 - DigitalOcean + Terraform Cloud
 
 on:
   workflow_dispatch:
+    inputs:
+      terraform_lock:
+        description: 'Czy odblokować wersję Terraform?'
+        required: true
+        default: false
+        type: boolean
+      id_lock:
+        description: "Twoj lock ID"
+        required: false
+        type: string
 
 defaults:
   run:
@@ -22,6 +32,12 @@ jobs:
         with:
           terraform_version: 1.7.5
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Unlock Terraform version
+        if: ${{ github.event.inputs.terraform_lock != false }}
+        run: |
+          terraform init
+          terraform force-unlock -forec ${{ inputs.id_lock }}
 
       # Jedno rowazanie na dostarczenie zmiennych do terraform
       - name: Configure auto-ftvars
