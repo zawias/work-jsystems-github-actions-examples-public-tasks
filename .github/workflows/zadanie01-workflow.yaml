@@ -17,15 +17,16 @@ on:
         required: false
         type: string
         default: "./DODATKOWE/zadanie01"
-# defaults:
-#   run:
-#     shell: bash
-#     working-directory: ./DODATKOWE/zadanie01
 
 jobs:
   zadanie_testing:
     runs-on: ubuntu-latest
     environment: zadanie_testing
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ inputs.path }}
 
     steps:
       - name: Checkout code
