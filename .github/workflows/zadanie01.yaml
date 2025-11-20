@@ -1,0 +1,33 @@
+name: Zadanie01 - DigitalOcean + Terraform Cloud
+
+on:
+  workflow_dispatch:
+
+jobs:
+  zadanie_testing:
+    runs-on: ubuntu-latest
+    environment: zadanie_testing
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Setup Terraform CLI
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.5
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+
+      - name: Terraform Apply
+        run: terraform apply tfplan
+
+      - name: Terraform Destroy
+        run: |
+          terraform plan -destroy -out=tfplan_destroy
+          terraform apply tfplan_destroy
