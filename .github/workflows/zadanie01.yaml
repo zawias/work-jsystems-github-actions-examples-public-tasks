@@ -23,16 +23,32 @@ jobs:
           terraform_version: 1.7.5
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
+      # Jedno rowazanie na dostarczenie zmiennych do terraform
+      - name: Configure auto-ftvars
+        run: |
+          cat << EOF > ./.auto.tfvars
+          ${{ secrets.AUTO_TFVARS }}
+          EOF
+
+      - name: Add additional variables to .auto.tfvars
+        run: |
+          echo "region=${{ vars.REGION }}" >> ./.auto.tfvars
+          echo "droplet_image=${{ vars.DROPLET_IMAGE }}" >> ./.auto.tfvars
+          echo "droplet_size=${{ vars.DROPLET_SIZE }}" >> ./.auto.tfvars
+          echo "name=${{ vars.NAME }}" >> ./.auto.tfvars
+          echo "vpc_ip_range=${{ vars.VPC_IP_RANGE }}" >> ./.auto
+
       - name: Terraform Init
         run: terraform init
 
+        # Druga metoda -var="do_token=${{ secrets.DO_TOKEN }}" itd. dla innych wartsości
       - name: Terraform Plan
-        run: terraform plan -out=tfplan
+        run: terraform plan -var="do_token=${{ secrets.DO_TOKEN }}" -input=false -out=tfplan
 
       - name: Terraform Apply
-        run: terraform apply tfplan
+        run: terraform apply -input=false tfplan
 
       - name: Terraform Destroy
         run: |
-          terraform plan -destroy -out=tfplan_destroy
-          terraform apply tfplan_destroy
+          terraform plan -destroy -input=false -out=tfplan_destroy
+          terraform apply -input=false tfplan_destroy
