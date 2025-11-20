@@ -1,0 +1,70 @@
+name: Zadanie01 - DigitalOcean + Terraform Cloud
+
+on:
+  workflow_call:
+    inputs:
+      terraform_lock:
+        description: 'Czy odblokować wersję Terraform?'
+        required: true
+        default: false
+        type: boolean
+      id_lock:
+        description: "Twoj lock ID"
+        required: false
+        type: string
+
+# defaults:
+#   run:
+#     shell: bash
+#     working-directory: ./DODATKOWE/zadanie01
+
+jobs:
+  zadanie_testing:
+    runs-on: ubuntu-latest
+    environment: zadanie_testing
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Setup Terraform CLI
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.5
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Unlock Terraform version
+        if: ${{ github.event.inputs.terraform_lock == true }}
+        run: |
+          terraform init
+          terraform force-unlock -force ${{ inputs.id_lock }}
+
+      # Jedno rowazanie na dostarczenie zmiennych do terraform
+      - name: Configure auto-ftvars
+        run: |
+          cat << EOF > ./.auto.tfvars
+          ${{ secrets.AUTO_TFVARS }}
+          EOF
+
+      - name: Add additional variables to .auto.tfvars
+        run: |
+          echo "region = \"${{ vars.REGION }}\"" >> ./.auto.tfvars
+          echo "droplet_image = \"${{ vars.DROPLET_IMAGE }}\"" >> ./.auto.tfvars
+          echo "droplet_size = \"${{ vars.DROPLET_SIZE }}\"" >> ./.auto.tfvars
+          echo "name = \"${{ vars.NAME }}\"" >> ./.auto.tfvars
+          echo "vpc_ip_range = \"${{ vars.VPC_IP_RANGE }}\"" >> ./.auto.tfvars
+
+      - name: Terraform Init
+        run: terraform init
+
+        # Druga metoda -var="do_token=${{ secrets.DO_TOKEN }}" itd. dla innych wartsości
+      - name: Terraform Plan
+        run: terraform plan -var="do_token=${{ secrets.DO_TOKEN }}" -input=false -out=tfplan
+
+      - name: Terraform Apply
+        run: terraform apply -input=false tfplan
+
+      - name: Terraform Destroy
+        run: |
+          terraform plan -destroy -input=false -out=tfplan_destroy
+          terraform apply -input=false tfplan_destroy
