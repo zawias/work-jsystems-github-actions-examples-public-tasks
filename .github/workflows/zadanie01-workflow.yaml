@@ -17,7 +17,13 @@ on:
         required: false
         type: string
         default: "./DODATKOWE/zadanie01"
-
+    secrets:
+      TF_API_TOKEN:
+        required: true
+      DO_TOKEN:
+        required: true
+      AUTO_TFVARS:
+        required: true
 jobs:
   zadanie_testing:
     runs-on: ubuntu-latest
