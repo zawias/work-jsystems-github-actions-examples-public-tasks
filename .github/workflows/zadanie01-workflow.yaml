@@ -12,11 +12,11 @@ on:
         description: "Twoj lock ID"
         required: false
         type: string
-    secrets:
-      TF_API_TOKEN:
-        required: true
-      DO_TOKEN:
-        required: true
+      path:
+        description: "Sciezka do katalogu z terraform"
+        required: false
+        type: string
+        default: "./DODATKOWE/zadanie01"
 # defaults:
 #   run:
 #     shell: bash
