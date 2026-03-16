@@ -1,4 +1,4 @@
-name: 02 - Workflow Events v2
+name: 02 - Workflow Events v2.2026
 # Wersja rozszerzona — push, pull_request, schedule, workflow_dispatch
 
 on:
