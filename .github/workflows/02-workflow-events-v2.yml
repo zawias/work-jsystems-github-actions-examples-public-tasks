@@ -12,6 +12,7 @@ on:
 
 jobs:
   echo:
+    name: Show the trigger
     runs-on: ubuntu-latest
     steps:
       - name: Show the trigger
