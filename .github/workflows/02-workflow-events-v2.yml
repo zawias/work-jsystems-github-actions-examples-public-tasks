@@ -7,7 +7,7 @@ on:
     branches:
       - CW02_03_2026
   schedule:
-    - cron: "*/2 * * * *"     # co 2 minuty
+    - cron: "*/20 * * * *"     # co 20 minut
   workflow_dispatch:
 
 jobs:
