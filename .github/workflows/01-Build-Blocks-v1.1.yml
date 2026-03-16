@@ -12,7 +12,7 @@ jobs:
         run: echo "Hello, World!"
       - name: Tworze pliki
         run: |
-          echo "To jest plik 1" > plik1.txt
+          echo "$GITHUB_SHA" > plik1.txt
           echo "To jest plik 2" > plik2.txt
       - name: Wyświetlam zawartość katalogu
         run: ls -la
