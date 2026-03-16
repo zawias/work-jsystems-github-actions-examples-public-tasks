@@ -30,4 +30,6 @@ jobs:
         run: ls -la
       - name: Say goodbye
         run: echo "Goodbye!"
+      - name: Seeeping for 10 seconds
+        run: sleep 60
         # Dodaj inne kroki i zobacz jak zachowuje sie github actions jako osobne joby oraz kroki w tym jobie.
