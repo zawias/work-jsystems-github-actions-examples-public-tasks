@@ -1,0 +1,33 @@
+name: 01 - Building Blocks v1.1
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  echo-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo "Hello, World!"
+      - name: Tworze pliki
+        run: |
+          echo "To jest plik 1" > plik1.txt
+          echo "To jest plik 2" > plik2.txt
+      - name: Wyświetlam zawartość katalogu
+        run: ls -la
+      - name: Wyświetlam zawartość plików
+        run: cat plik1.txt plik2.txt
+
+  echo-goodbye:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Successful step
+        run: |
+          echo "I will fail"
+          exit 0  # dowolny kod != 0 spowoduje błąd kroku
+      - name: Wysietlam pliki z kroku pierwszego Joba
+        run: ls -la
+      - name: Say goodbye
+        run: echo "Goodbye!"
+        # Dodaj inne kroki i zobacz jak zachowuje sie github actions jako osobne joby oraz kroki w tym jobie.
