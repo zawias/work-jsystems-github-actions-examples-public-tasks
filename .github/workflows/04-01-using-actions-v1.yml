@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: CWICZENIA/04-praca-z-zewnetrzymi-akcjami/react-app
+        working-directory: CWICZENIA/04-praca-z-zewnetrzymi-akcjami/kuraczak-app
     steps:
       # 1
-      # - name: Checkout Code
-      #   uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
       - name: Show Files
         run: |
           ls -la
