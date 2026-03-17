@@ -18,7 +18,7 @@ env:
 
 jobs:
   echo-prod:
-    environment: Production
+    environment: production
     runs-on: ubuntu-latest
     env:
       MY_JOB_VAR: 'job'
@@ -26,7 +26,7 @@ jobs:
     steps:
       - name: Display information
         run: |
-
+          echo "Variable value: ${{ vars.KIURCZAK }}"
   echo-data:
     runs-on: ubuntu-latest
     env:
