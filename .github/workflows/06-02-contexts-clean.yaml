@@ -11,6 +11,9 @@ on:
       debug:
         type: boolean
         default: false
+      nazwa:
+        type: string
+        default: 'domyślna wartość'
 
 env:
   MY_WORKFLOW_VAR: 'workflow'
@@ -62,3 +65,4 @@ jobs:
         run: |
           echo "Workflow env: $MY_WORKFLOW_VAR"
           echo "Overwritten env: $MY_OVERWRITTEN_VAR"
+          echo "${{ inputs.nazwa }}"
