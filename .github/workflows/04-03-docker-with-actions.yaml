@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   build-test:
-    runs-on: ubuntu-latest
+    runs-on: piotrkoska
     defaults:
       run:
         shell: bash
