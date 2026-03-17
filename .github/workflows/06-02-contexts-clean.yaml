@@ -17,6 +17,16 @@ env:
   MY_OVERWRITTEN_VAR: 'workflow'
 
 jobs:
+  echo-prod:
+    environment: Production
+    runs-on: ubuntu-latest
+    env:
+      MY_JOB_VAR: 'job'
+      MY_OVERWRITTEN_VAR: 'job'
+    steps:
+      - name: Display information
+        run: |
+
   echo-data:
     runs-on: ubuntu-latest
     env:
@@ -45,10 +55,10 @@ jobs:
         run: |
           echo "Workflow env: ${{ env.MY_WORKFLOW_VAR }}"
           echo "Overwritten env: ${{ env.MY_OVERWRITTEN_VAR }}"
-  # echo-data2:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Print Env Variables
-  #       run: |
-  #         echo "Workflow env: $MY_WORKFLOW_VAR"
-  #         echo "Overwritten env: $MY_OVERWRITTEN_VAR"
+  echo-data2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Env Variables
+        run: |
+          echo "Workflow env: $MY_WORKFLOW_VAR"
+          echo "Overwritten env: $MY_OVERWRITTEN_VAR"
