@@ -47,3 +47,4 @@ jobs:
           echo "This job is running on a self-hosted runner."
           echo "$RUNNER_OS"
           ip a
+          echo  "This is the end of the self-hosted runner job." > test.txt
