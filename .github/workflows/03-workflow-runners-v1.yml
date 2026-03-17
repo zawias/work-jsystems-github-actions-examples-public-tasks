@@ -48,3 +48,13 @@ jobs:
           echo "$RUNNER_OS"
           ip a
           echo  "This is the end of the self-hosted runner job." > test.txt
+
+  self-hosted-echo-2:
+    runs-on: piotrkoska
+    steps:
+      - name: Show OS
+        shell: bash
+        run: |
+          ls -la
+          pwd
+          cat test.txt
