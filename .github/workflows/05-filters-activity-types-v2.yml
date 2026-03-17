@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   pull_request:
     branches:
-      - CW05N
+      - main
     types: [closed]
 
 jobs:
