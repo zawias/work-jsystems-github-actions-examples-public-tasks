@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   build-no-actions-test:
-    runs-on: ubuntu-latest
+    runs-on: piotrkoska
     defaults:
       run:
         shell: bash
