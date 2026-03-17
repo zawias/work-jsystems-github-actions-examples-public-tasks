@@ -110,5 +110,5 @@ jobs:
         if: always()
         run: |
           set -euxo pipefail
-          docker rm -f "${IMAGE_NAME}" || true
-          docker image rm "${IMAGE_NAME}:${TAG}" || true
+          #docker rm -f "${IMAGE_NAME}" || true
+          #docker image rm "${IMAGE_NAME}:${TAG}" || true
