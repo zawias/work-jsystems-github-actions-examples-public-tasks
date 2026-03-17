@@ -7,10 +7,10 @@ on: workflow_dispatch
 
 jobs:
   build:
-    runs-on: piotrkoska
+    runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: CWICZENIA/04-praca-z-zewnetrzymi-akcjami/kuraczak-app
+        working-directory: CWICZENIA/04-praca-z-zewnetrzymi-akcjami/react-app
     steps:
       # 1
       - name: Checkout Code
@@ -19,8 +19,6 @@ jobs:
       #   run: |
       #     ls -la
       #     pwd
-      #     cd ../..
-      #     ls -la
       # 2
       - name: Setup Node
         uses: actions/setup-node@v4
