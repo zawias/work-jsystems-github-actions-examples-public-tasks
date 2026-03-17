@@ -7,7 +7,7 @@ on: workflow_dispatch
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: piotrkoska
     defaults:
       run:
         working-directory: CWICZENIA/04-praca-z-zewnetrzymi-akcjami/kuraczak-app
