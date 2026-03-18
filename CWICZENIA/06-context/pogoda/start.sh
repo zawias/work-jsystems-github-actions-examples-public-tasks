@@ -38,5 +38,5 @@ elif echo "$response" | grep -q "main"; then
 else
     echo "API nie odpowiedziało prawidłowo. Sprawdzam wttr.in..."
     curl "https://wttr.in/$CITY?format=2"
-    exit 0
+    exit 1
 fi
