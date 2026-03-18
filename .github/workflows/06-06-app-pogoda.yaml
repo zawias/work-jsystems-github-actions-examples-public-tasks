@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: piotrkoska
 
     env:
       LOCAL_IMAGE_NAME: python_pogoda:test
@@ -86,3 +86,18 @@ jobs:
 
           docker push "$HUB_IMAGE_BASE:piotrkoska"
           docker push "$HUB_IMAGE_BASE:$SHORT_SHA"
+
+      - name: docker pull latest image from Docker Hub (for test)
+        #if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          HUB_IMAGE_BASE="${{ secrets.DOCKERHUB_USERNAME }}/python_pogoda_16_03_2026"
+          docker pull "$HUB_IMAGE_BASE:piotrkoska"
+
+      - name: Run Pogoda app
+        run: |
+          echo "Uruchamiam aplikację Pogoda..."
+          docker run -d \
+            --name pogoda_app \
+            -p 8888:8000 \
+            -e OPENWEATHER_API_KEY="${{ secrets.OPENWEATHER_API_KEY }}" \
+            "$HUB_IMAGE_BASE:piotrkoska"
