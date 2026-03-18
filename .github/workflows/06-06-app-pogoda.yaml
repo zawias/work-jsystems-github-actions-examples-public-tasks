@@ -69,20 +69,20 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           SHORT_SHA="${GITHUB_SHA::7}"
-          HUB_IMAGE_BASE="${{ secrets.DOCKERHUB_USERNAME }}/python_pogoda"
+          HUB_IMAGE_BASE="${{ secrets.DOCKERHUB_USERNAME }}/python_pogoda_16_03_2026"
 
           echo "Taguję obraz:"
-          echo " - $HUB_IMAGE_BASE:latest"
+          echo " - $HUB_IMAGE_BASE:piotrkoska"
           echo " - $HUB_IMAGE_BASE:$SHORT_SHA"
 
-          docker tag "$LOCAL_IMAGE_NAME" "$HUB_IMAGE_BASE:latest"
+          docker tag "$LOCAL_IMAGE_NAME" "$HUB_IMAGE_BASE:piotrkoska"
           docker tag "$LOCAL_IMAGE_NAME" "$HUB_IMAGE_BASE:$SHORT_SHA"
 
       - name: Push image to Docker Hub
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           SHORT_SHA="${GITHUB_SHA::7}"
-          HUB_IMAGE_BASE="${{ secrets.DOCKERHUB_USERNAME }}/python_pogoda"
+          HUB_IMAGE_BASE="${{ secrets.DOCKERHUB_USERNAME }}/python_pogoda_16_03_2026"
 
-          docker push "$HUB_IMAGE_BASE:latest"
+          docker push "$HUB_IMAGE_BASE:piotrkoska"
           docker push "$HUB_IMAGE_BASE:$SHORT_SHA"
