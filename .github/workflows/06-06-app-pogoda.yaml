@@ -87,15 +87,10 @@ jobs:
           docker push "$HUB_IMAGE_BASE:piotrkoska"
           docker push "$HUB_IMAGE_BASE:$SHORT_SHA"
 
-      - name: docker pull latest image from Docker Hub (for test)
-        #if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          HUB_IMAGE_BASE="${{ secrets.DOCKERHUB_USERNAME }}/python_pogoda_16_03_2026"
-          docker pull "$HUB_IMAGE_BASE:piotrkoska"
-
       - name: Run container
         run: |
           docker run -d \
+            --name pogoda_api \
             -p 8888:8000 \
             -e OPENWEATHER_API_KEY="${{ secrets.OPENWEATHER_API_KEY }}" \
-            "$HUB_IMAGE_BASE:piotrkoska"
+            "$LOCAL_IMAGE_NAME"
