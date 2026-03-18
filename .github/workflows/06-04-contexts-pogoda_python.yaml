@@ -19,7 +19,7 @@ env:
 jobs:
   pogoda-info:
     name: Pobierz informacje o pogodzie
-    runs-on: ubuntu-latest
+    runs-on: piotrkoska
     defaults:
       run:
         shell: bash
@@ -32,6 +32,8 @@ jobs:
           python3 ./start.py "${{ inputs.city }}" "${{ env.API_KEY }}" >> $GITHUB_STEP_SUMMARY
           python3 --version >> $GITHUB_STEP_SUMMARY
       - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
       - name: Sprawdzanie pogody
         run: |
           python3 ./start.py "${{ inputs.city }}" "${{ env.API_KEY }}" >> $GITHUB_STEP_SUMMARY
