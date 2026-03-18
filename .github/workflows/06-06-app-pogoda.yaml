@@ -96,8 +96,4 @@ jobs:
       - name: Run Pogoda app
         run: |
           echo "Uruchamiam aplikację Pogoda..."
-          docker run -d \
-            --name pogoda_app \
-            -p 8888:8000 \
-            -e OPENWEATHER_API_KEY="${{ secrets.OPENWEATHER_API_KEY }}" \
-            "$HUB_IMAGE_BASE:piotrkoska"
+          docker run -d --name pogoda_app -p 8888:8000 -e OPENWEATHER_API_KEY="${{ secrets.OPENWEATHER_API_KEY }}" "$HUB_IMAGE_BASE:piotrkoska"
