@@ -115,6 +115,11 @@ jobs:
           docker stop pogoda_api || true
           docker rm pogoda_api || true
 
+      - name: show secret and vars
+        run: |
+          echo ": ${{ env.TEST }}"
+          echo ": ${{ secrets.TEST }}"
+
   # =====================
   # 3. BUILD & PUSH (RELEASE) JOB
   # =====================
@@ -136,6 +141,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: show secret and vars
+        run: |
+          echo ": ${{ env.TEST }}"
+          echo ": ${{ secrets.TEST }}"
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -155,3 +165,4 @@ jobs:
             ${{ env.HUB_IMAGE_BASE }}:${{ github.sha }}
             ${{ env.HUB_IMAGE_BASE }}:${{ github.ref_name }}
             ${{ env.HUB_IMAGE_BASE }}:${{ env.DEPLOY_ENV }}
+

@@ -200,4 +200,4 @@
 
 
 ## Dodatkowe materiały:
-1. https://registry.terraform.io/providers/integrations/github/latest/docsJust a few more. 
+1. https://registry.terraform.io/providers/integrations/github/latest/docsJust a few more. Repository. Okay. As present at sea, Dalai. Attack the environments accession. Or secret. Variables. Environment. Actually test test. Variables test. Test. 2 The momentum. Declarati Kodu.
