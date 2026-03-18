@@ -19,7 +19,7 @@ env:
 jobs:
   pogoda-info:
     name: Pobierz informacje o pogodzie
-    runs-on: piotrkoska
+    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
