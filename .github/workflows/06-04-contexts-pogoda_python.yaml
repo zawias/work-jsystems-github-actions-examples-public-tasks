@@ -30,3 +30,9 @@ jobs:
       - name: Sprawdzanie pogody
         run: |
           python3 ./start.py "${{ inputs.city }}" "${{ env.API_KEY }}" >> $GITHUB_STEP_SUMMARY
+          python3 --version >> $GITHUB_STEP_SUMMARY
+      - uses: actions/setup-python@v6
+      - name: Sprawdzanie pogody
+        run: |
+          python3 ./start.py "${{ inputs.city }}" "${{ env.API_KEY }}" >> $GITHUB_STEP_SUMMARY
+          python3 --version >> $GITHUB_STEP_SUMMARY
